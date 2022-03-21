@@ -19,7 +19,7 @@ namespace VideoTime.UI
             foreach (FolderItem2 item in folder.Items())
             {
                 // http://www.levibotelho.com/development/get-the-length-of-a-video-in-c/
-                if (item.Name == "sample_file.mp4")
+                if (item.Name.EndsWith(".mp4"))
                 {
                     Console.WriteLine(TimeSpan.FromSeconds(item.ExtendedProperty("System.Media.Duration") / 10000000));
                 }
