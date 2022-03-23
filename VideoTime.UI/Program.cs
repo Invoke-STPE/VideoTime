@@ -14,11 +14,26 @@ namespace VideoTime.UI
         {
             // Read CMD Input
             string filePath = Path.GetFullPath(args[0]);
+
+            // Define types needed.
             TimeSpan duration = default;
+            List<string> filePaths = default;
             // Create a new shell object
             Shell shell = new Shell();
 
-            List<string> filePaths = Directory.GetDirectories(filePath, "*", searchOption: SearchOption.AllDirectories).ToList();
+            try
+            {
+                filePaths = Directory.GetDirectories(filePath, "*", searchOption: SearchOption.AllDirectories).ToList();
+            }
+            catch (DirectoryNotFoundException directoryNotFound)
+            {
+                Console.WriteLine(directoryNotFound.Message);
+                return;
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+            }
             filePaths.Add(filePath);
             foreach (string path in filePaths)
             {
