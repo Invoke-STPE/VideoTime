@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Shell32;
 
 
@@ -11,20 +13,27 @@ namespace VideoTime.UI
         static void Main(string[] args)
         {
             // Read CMD Input
-            string filePath = Path.GetFullPath(args[1]);
-
+            string filePath = Path.GetFullPath(args[0]);
+            TimeSpan duration = default;
             // Create a new shell object
-            var shell = new Shell();
-            var folder = shell.NameSpace(filePath);
-            foreach (FolderItem2 item in folder.Items())
+            Shell shell = new Shell();
+
+            List<string> filePaths = Directory.GetDirectories(filePath, "*", searchOption: SearchOption.AllDirectories).ToList();
+            filePaths.Add(filePath);
+            foreach (string path in filePaths)
             {
                 // http://www.levibotelho.com/development/get-the-length-of-a-video-in-c/
-                if (item.Name.EndsWith(".mp4"))
+                Folder folder = shell.NameSpace(path);
+                foreach (FolderItem2 item in folder.Items())
                 {
-                    Console.WriteLine(TimeSpan.FromSeconds(item.ExtendedProperty("System.Media.Duration") / 10000000));
+                    
+                    if (item.Name.EndsWith(".mp4"))
+                    {
+                        duration += TimeSpan.FromSeconds(item.ExtendedProperty("System.Media.Duration") / 10000000);
+                    }
                 }
             }
-
-            }
+            Console.WriteLine($"The total video duration for the path is: {duration}");
+        }
     }
 }
