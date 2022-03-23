@@ -34,6 +34,8 @@ namespace VideoTime.UI
             {
                 Console.WriteLine(exception.Message);
             }
+
+
             foreach (string path in filePaths)
             {
                 // http://www.levibotelho.com/development/get-the-length-of-a-video-in-c/
@@ -51,9 +53,7 @@ namespace VideoTime.UI
         }
         public static List<string> GetAllDirectoriesFromFolder(string parentFolder)
         {
-            List<string> directories = default;
-            
-            directories = Directory.GetDirectories(parentFolder, "*", searchOption: SearchOption.AllDirectories).ToList();
+            List<string> directories = Directory.GetDirectories(parentFolder, "*", searchOption: SearchOption.AllDirectories).ToList();
             directories.Add(parentFolder);
             return directories;
         }
