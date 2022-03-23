@@ -23,7 +23,7 @@ namespace VideoTime.UI
 
             try
             {
-                filePaths = Directory.GetDirectories(filePath, "*", searchOption: SearchOption.AllDirectories).ToList();
+                filePaths = GetAllDirectoriesFromFolder(filePath);
             }
             catch (DirectoryNotFoundException directoryNotFound)
             {
@@ -34,7 +34,6 @@ namespace VideoTime.UI
             {
                 Console.WriteLine(exception.Message);
             }
-            filePaths.Add(filePath);
             foreach (string path in filePaths)
             {
                 // http://www.levibotelho.com/development/get-the-length-of-a-video-in-c/
@@ -49,6 +48,14 @@ namespace VideoTime.UI
                 }
             }
             Console.WriteLine($"The total video duration for the path is: {duration}");
+        }
+        public static List<string> GetAllDirectoriesFromFolder(string parentFolder)
+        {
+            List<string> directories = default;
+            
+            directories = Directory.GetDirectories(parentFolder, "*", searchOption: SearchOption.AllDirectories).ToList();
+            directories.Add(parentFolder);
+            return directories;
         }
     }
 }
