@@ -2,7 +2,7 @@
   "profiles": {
     "VideoTime.UI": {
       "commandName": "Project",
-      "commandLineArgs": "\"C:\\Users\\Steven\\Downloads\\sample_file.mp4\""
+      "commandLineArgs": "\"C:\\Users\\Steven\\Downloads"
     }
   }
 }
