@@ -3,7 +3,8 @@
  A personal C# program, that tells how long the total duration of videos in a folder.
 
 ## Usage:
-This section will be updated as its progress.
+As of right now the only usage of this is with hardcoded strings, my next step will be a small gui where you can browse for a folder location.
 
 ## Roadmap
-- By providing a file path, the program will return the total amount of video duration.
+- [x] By providing a file path, the program will return the total amount of video duration.
+- [ ] Add a Graphical User Interface.
