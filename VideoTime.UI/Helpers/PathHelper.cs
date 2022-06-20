@@ -11,20 +11,30 @@ namespace VideoTime.UI.Helpers
 
         public static List<string> ResolveDirectoriesPath(string path)
         {
-            string directoryPath = ResolveAbsolutePath(path);
-
-            return GetAllDirectoryPathsFromFolder(directoryPath);
+            List<string> test = GetAllDirectoryPathsFromFolder(path);
+            return test;
 
         }
-        private static string ResolveAbsolutePath(string cmdArgument)
+
+        // Have to loop through the return of GetDirectories, else I cannot continue if an exception is hit.
+        // http://www.blackwasp.co.uk/FolderRecursion.aspx
+        private static List<string> GetAllDirectoryPathsFromFolder(string path)
         {
-            return Path.GetFullPath(cmdArgument);
-        }
-        private static List<string> GetAllDirectoryPathsFromFolder(string parentFolder)
-        {
-            List<string> directories = Directory.GetDirectories(parentFolder, "*", searchOption: SearchOption.AllDirectories).ToList();
-            directories.Add(parentFolder);
-            return directories;
+            List<string> directoryPaths = new List<string>();
+            try
+            {
+                foreach (string folder in Directory.GetDirectories(path))
+                {
+                    Console.WriteLine($"{folder}");
+                    directoryPaths.Add(folder);
+                    GetAllDirectoryPathsFromFolder(folder);
+                }
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Console.WriteLine($"Unauthorized Access found");
+            }
+            return directoryPaths;
         }
     }
 }

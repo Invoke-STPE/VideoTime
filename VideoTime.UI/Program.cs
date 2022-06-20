@@ -13,11 +13,9 @@ namespace VideoTime.UI
         [STAThread]
         static void Main(string[] args)
         {
-            // TODO: Create Dependency Injection.
-            // TODO: Unit tests.
-            // Define types needed.
-
-            List<string> filePaths = PathHelper.ResolveDirectoriesPath(args[0]);
+            //string path = @"E:\Courses\IAmTimCorey";
+            string path = @"E:\Courses\IAmTimCorey";
+            List<string> filePaths = PathHelper.ResolveDirectoriesPath(path);
 
             TimeSpan duration = DurationHelper.GetDurationOfVideoFiles(filePaths);
 
