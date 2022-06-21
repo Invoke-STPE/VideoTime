@@ -37,6 +37,7 @@ namespace VideoTime.GUI
             {
                 dialog.ShowDialog();
                 pathText.Text = dialog.SelectedPath;
+                resultText.Text = "This is the place of the result";
             }
         }
 
