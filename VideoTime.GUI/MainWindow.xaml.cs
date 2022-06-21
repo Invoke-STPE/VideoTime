@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,10 +24,11 @@ namespace VideoTime.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
-        // TODO: Need a stackpanel to show folders iterated, and unauthorized folders
+        public BindingList<string> outputMessages = new BindingList<string>();
         public MainWindow()
         {
             InitializeComponent();
+            outPutList.ItemsSource = outputMessages;
         }
 
         private void browse_Click(object sender, RoutedEventArgs e)
@@ -39,10 +42,15 @@ namespace VideoTime.GUI
 
         private void GetDuration_Click(object sender, RoutedEventArgs e)
         {
+            TimeSpan duration = default;
             List<string> filePaths = PathHelper.ResolveDirectoriesPath(pathText.Text);
 
-            TimeSpan duration = DurationHelper.GetDurationOfVideoFiles(filePaths);
-
+            foreach (string path in filePaths)
+            {
+                outputMessages.Add(path);
+                outPutList.Items.Refresh();
+                duration += DurationHelper.GetDurationOfVideoFiles(path);
+            }
             resultText.Text = $"The folder contains {Math.Floor( duration.TotalHours )} Hours of video.";
 
         }

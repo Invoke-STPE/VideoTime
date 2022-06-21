@@ -26,6 +26,7 @@ namespace VideoTime.GUI.Helpers
                     Console.WriteLine($"{folder}");
                     directoryPaths.Add(folder);
                     GetAllDirectoryPathsFromFolder(folder);
+                    
                 }
             }
             catch (UnauthorizedAccessException)

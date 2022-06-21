@@ -48,8 +48,19 @@
         <Button Grid.Row="7" Grid.Column="1"
                 x:Name="GetDuration" Content="Get Duration"
                 Click="GetDuration_Click"/>
-
+        <ScrollViewer Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="3" Grid.RowSpan="5"
+                      Margin="10 0 0 0">
+            <ListBox x:Name="outPutList">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="{Binding}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
         <TextBlock Grid.Row="7" Grid.Column="4" Grid.ColumnSpan="6"
-                   x:Name="resultText" HorizontalAlignment="Center" Margin="20 0 0 0"/>
+                   x:Name="resultText" HorizontalAlignment="Center" Margin="20 0 0 0" Text="This is the place of the result"/>
     </Grid>
 </Window>
