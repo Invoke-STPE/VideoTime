@@ -7,4 +7,4 @@ As of right now the only usage of this is with hardcoded strings, my next step w
 
 ## Roadmap
 - [x] By providing a file path, the program will return the total amount of video duration.
-- [ ] Add a Graphical User Interface.
+- [x] Add a Graphical User Interface.
