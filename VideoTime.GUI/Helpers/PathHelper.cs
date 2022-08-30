@@ -19,6 +19,7 @@ namespace VideoTime.GUI.Helpers
         private static List<string> GetAllDirectoryPathsFromFolder(string path)
         {
             List<string> directoryPaths = new List<string>();
+            directoryPaths.Add(path);
             try
             {
                 foreach (string folder in Directory.GetDirectories(path))
